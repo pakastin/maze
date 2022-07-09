@@ -1,17 +1,20 @@
 import Cell from './cell.js';
 
+const GRID_WIDTH = 64;
+const GRID_HEIGHT = 48;
+
+// Create maze grid
+
 const maze = [];
 
 const $table = document.createElement('table');
 
-// Create maze grid
-
-for (let y = 0; y < 48; y++) {
+for (let y = 0; y < GRID_HEIGHT; y++) {
   maze[y] = [];
 
   const $tr = document.createElement('tr');
 
-  for (let x = 0; x < 64; x++) {
+  for (let x = 0; x < GRID_WIDTH; x++) {
     maze[y][x] = new Cell(maze, x, y);
 
     const $td = document.createElement('td');
