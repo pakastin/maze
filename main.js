@@ -51,20 +51,20 @@ stack.push(maze[0][0]);
 
 (async () => {
   while (stack.length) {
-    const last = stack.pop();
-    last.$td.classList.add('black');
+    const current = stack.pop();
+    current.$td.classList.add('black');
 
-    if (last.unvisitedNeighbors.length) {
-      const visitIndex = Math.random() * last.unvisitedNeighbors.length | 0;
-      const { pos, cell: neighbor } = last.unvisitedNeighbors[visitIndex];
+    if (current.unvisitedNeighbors.length) {
+      const visitIndex = Math.random() * current.unvisitedNeighbors.length | 0;
+      const { pos, cell: neighbor } = current.unvisitedNeighbors[visitIndex];
 
-      last.visit(pos);
+      current.visit(pos);
       neighbor.visited = true;
 
-      if (last.unvisitedNeighbors.length) {
-        stack.push(last);
+      if (current.unvisitedNeighbors.length) {
+        stack.push(current);
       } else {
-        last.$td.classList.add('ready');
+        current.$td.classList.add('ready');
       }
       if (neighbor.unvisitedNeighbors.length) {
         stack.push(neighbor);
@@ -72,9 +72,9 @@ stack.push(maze[0][0]);
         neighbor.$td.classList.add('ready');
       }
     } else {
-      last.$td.classList.add('ready');
+      current.$td.classList.add('ready');
     }
     await new Promise(resolve => requestAnimationFrame(resolve));
-    last.$td.classList.remove('black');
+    current.$td.classList.remove('black');
   }
 })();
