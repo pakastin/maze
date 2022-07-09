@@ -1,7 +1,7 @@
 import Cell from './cell.js';
 
-const GRID_WIDTH = 64;
-const GRID_HEIGHT = 48;
+const GRID_WIDTH = 48;
+const GRID_HEIGHT = 32;
 
 // Create maze grid
 
