@@ -25,6 +25,13 @@ for (let y = 0; y < GRID_HEIGHT; y++) {
     $td.classList.add('right');
     $td.classList.add('bottom');
 
+    if (x === 0 && y === 0) {
+      maze[y][x].walls.top = false;
+    } else if (x === GRID_WIDTH - 1 && y === GRID_HEIGHT - 1) {
+      maze[y][x].walls.bottom = false;
+      maze[y][x].updateBorders();
+    }
+
     $tr.appendChild($td);
   }
   $table.appendChild($tr);
