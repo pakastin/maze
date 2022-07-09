@@ -1,5 +1,5 @@
-# maze
-Maze generation
+# Maze
+Maze generation visualization
 
 https://pakastin.github.io/maze
 
