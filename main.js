@@ -7,30 +7,32 @@ const GRID_HEIGHT = 48;
 
 const maze = [];
 
-const $table = document.createElement('table');
-
 for (let y = 0; y < GRID_HEIGHT; y++) {
   maze[y] = [];
 
-  const $tr = document.createElement('tr');
-
   for (let x = 0; x < GRID_WIDTH; x++) {
     maze[y][x] = new Cell(maze, x, y);
-
-    const $td = document.createElement('td');
-    maze[y][x].$td = $td;
-
-    $td.classList.add('top');
-    $td.classList.add('left');
-    $td.classList.add('right');
-    $td.classList.add('bottom');
 
     if (x === 0 && y === 0) {
       maze[y][x].walls.top = false;
     } else if (x === GRID_WIDTH - 1 && y === GRID_HEIGHT - 1) {
       maze[y][x].walls.bottom = false;
-      maze[y][x].updateBorders();
     }
+  }
+}
+
+// Create maze DOM table
+
+const $table = document.createElement('table');
+
+for (let y = 0; y < GRID_HEIGHT; y++) {
+  const $tr = document.createElement('tr');
+
+  for (let x = 0; x < GRID_WIDTH; x++) {
+    const $td = document.createElement('td');
+    maze[y][x].$td = $td;
+
+    maze[y][x].updateBorders();
 
     $tr.appendChild($td);
   }
@@ -39,13 +41,13 @@ for (let y = 0; y < GRID_HEIGHT; y++) {
 
 document.body.appendChild($table);
 
+// Generate maze
+
 const stack = [];
 
 maze[0][0].visited = true;
 
 stack.push(maze[0][0]);
-
-// Generate maze
 
 (async () => {
   while (stack.length) {
